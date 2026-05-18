@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Derivadas | Guía Educativa</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css"> 
+    
+    <!-- Librería Math.js para cálculos simbólicos -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.11.0/math.js"></script>
+    <!-- MathJax en modo SVG -->
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+    <!-- Barra de Navegación -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">📘 Derivadas</a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menú">☰</button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">⬅️ Volver al Inicio</a></li>
+                <li><a href="trigonometria.html">📐 Trigonometría</a></li>
+                <li><a href="formulario.html">📝 Formulario</a></li>
+                <li><a href="calculadora.html" class="text-primary">🧮 Calculadora</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero-section">
+        <div class="container">
+            <h1>Calculadora Inteligente</h1>
+            <p>Escribe cualquier función matemática y la derivaremos simbólicamente por ti.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="content-section fade-in">
+            <div class="card text-center">
+                <h2>Ingresa tu Función</h2>
+                <p class="mb-2 text-muted">Usa sintaxis estándar de código: <code>x^2</code>, <code>sin(x)</code>, <code>e^(2*x)</code>, <code>log(x)</code>, <code>sqrt(x)</code>.</p>
+                
+                <div class="flex-center">
+                    <span class="math-label">\( f(x) = \)</span>
+                    <input type="text" id="calc-input" class="input-math" placeholder="Ej: x^2 * sin(x)" autocomplete="off">
+                    <button id="btn-calcular" class="btn-primary m-0">Derivar 🚀</button>
+                </div>
+                
+                <p id="calc-error" class="text-red mt-1 hidden"></p>
+
+                <div id="calc-result-container" class="result-box hidden">
+                    <h3 class="mb-1 text-primary">Resultado Exacto:</h3>
+                    <div class="formula-box" id="calc-result">
+                        <!-- Aquí se inyectará MathJax -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            <p>Creado para propósitos educativos. 2026</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

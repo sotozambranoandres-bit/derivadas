@@ -71,3 +71,166 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// ==========================================================================
+// LÓGICA DEL QUIZ INTERACTIVO (EXAMEN)
+// ==========================================================================
+document.addEventListener('DOMContentLoaded', () => {
+    const quizContainer = document.getElementById('quiz-container');
+    
+    // Si no estamos en la página del quiz, ignorar este código
+    if (!quizContainer) return;
+
+    const questionText = document.getElementById('question-text');
+    const optionsContainer = document.getElementById('options-container');
+    const feedbackContainer = document.getElementById('feedback-container');
+    const nextBtnContainer = document.getElementById('next-btn-container');
+    const btnNext = document.getElementById('btn-next');
+    const questionTracker = document.getElementById('question-tracker');
+    const progressBar = document.getElementById('progress-bar');
+    const resultContainer = document.getElementById('result-container');
+    const finalScoreDisplay = document.getElementById('final-score');
+    const resultMessage = document.getElementById('result-message');
+
+    // Base de datos de preguntas
+    const quizData = [
+        {
+            question: "¿Cuál es la derivada de \\( f(x) = x^3 \\)?",
+            options: ["\\( 3x^2 \\)", "\\( x^2 \\)", "\\( 3x^3 \\)", "\\( \\frac{x^4}{4} \\)"],
+            correctIndex: 0,
+            feedback: "¡Correcto! Usamos la regla de la potencia: bajamos el 3 y restamos 1 al exponente."
+        },
+        {
+            question: "¿Cuál es la derivada de una constante \\( c \\)?",
+            options: ["\\( c \\)", "\\( 1 \\)", "\\( 0 \\)", "\\( x \\)"],
+            correctIndex: 2,
+            feedback: "¡Exacto! La tasa de cambio de un valor constante es siempre 0."
+        },
+        {
+            question: "¿Cuál es la derivada de \\( f(x) = \\sin(x) \\)?",
+            options: ["\\( \\cos(x) \\)", "\\( -\\cos(x) \\)", "\\( -\\sin(x) \\)", "\\( \\tan(x) \\)"],
+            correctIndex: 0,
+            feedback: "¡Muy bien! Es una de las reglas trigonométricas fundamentales."
+        },
+        {
+            question: "Aplica la regla de la cadena y simplifica: ¿Cuál es la derivada de \\( f(x) = (2x + 1)^2 \\)?",
+            options: ["\\( 4x + 2 \\)", "\\( 8x + 2 \\)", "\\( 8x + 4 \\)", "\\( 4(x + 1) \\)"],
+            correctIndex: 2,
+            feedback: "¡Excelente! Regla de la cadena: \\( 2(2x + 1) \\cdot 2 = 4(2x + 1) \\). Al simplificar con la propiedad distributiva, el 4 multiplica a ambos términos: \\( 8x + 4 \\)."
+        },
+        {
+            question: "¿Cuál es la derivada de \\( f(x) = e^x \\)?",
+            options: ["\\( x e^{x-1} \\)", "\\( e^x \\)", "\\( \\ln(x) \\)", "\\( 0 \\)"],
+            correctIndex: 1,
+            feedback: "¡Perfecto! La función exponencial natural es especial porque su derivada es ella misma."
+        }
+    ];
+
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let answered = false;
+
+    function loadQuestion() {
+        answered = false;
+        const currentQuiz = quizData[currentQuestionIndex];
+        
+        // 1. Actualizar Rastreador y Barra de Progreso
+        questionTracker.textContent = `Pregunta ${currentQuestionIndex + 1} de ${quizData.length}`;
+        progressBar.style.width = `${((currentQuestionIndex) / quizData.length) * 100}%`;
+        
+        // 2. Inyectar Texto de la Pregunta
+        questionText.innerHTML = currentQuiz.question;
+        
+        // 3. Limpiar Opciones y Feedback Anteriores
+        optionsContainer.innerHTML = '';
+        feedbackContainer.className = 'feedback-box hidden';
+        feedbackContainer.innerHTML = '';
+        nextBtnContainer.classList.add('hidden');
+
+        // 4. Generar Botones de Opciones
+        currentQuiz.options.forEach((option, index) => {
+            const button = document.createElement('button');
+            button.className = 'option-btn';
+            button.innerHTML = option;
+            button.onclick = () => selectOption(button, index);
+            optionsContainer.appendChild(button);
+        });
+
+        // 5. Renderizar MathJax para las nuevas fórmulas inyectadas
+        if (window.MathJax) {
+            MathJax.typesetPromise([document.getElementById('question-container')]).catch((err) => console.log(err));
+        }
+    }
+
+    function selectOption(selectedButton, index) {
+        if (answered) return; // Bloquear clics múltiples
+        answered = true;
+
+        const currentQuiz = quizData[currentQuestionIndex];
+        const isCorrect = (index === currentQuiz.correctIndex);
+        
+        const allButtons = optionsContainer.querySelectorAll('.option-btn');
+        
+        if (isCorrect) {
+            selectedButton.classList.add('correct');
+            score++;
+            showFeedback('success', currentQuiz.feedback);
+        } else {
+            selectedButton.classList.add('incorrect');
+            // Revelar cuál era la respuesta correcta
+            allButtons[currentQuiz.correctIndex].classList.add('correct');
+            showFeedback('error', "Incorrecto. " + currentQuiz.feedback);
+        }
+
+        // Desactivar todos los botones visualmente
+        allButtons.forEach(btn => {
+            btn.disabled = true;
+            btn.style.cursor = 'default';
+        });
+        
+        // Mostrar el botón para avanzar
+        nextBtnContainer.classList.remove('hidden');
+    }
+
+    function showFeedback(type, text) {
+        feedbackContainer.className = `feedback-box ${type}`;
+        feedbackContainer.innerHTML = text;
+        
+        // Renderizar si el feedback contiene fórmulas
+        if (window.MathJax) {
+            MathJax.typesetPromise([feedbackContainer]).catch((err) => console.log(err));
+        }
+    }
+
+    function showResults() {
+        quizContainer.classList.add('hidden');
+        resultContainer.classList.remove('hidden');
+        
+        // Llenar barra al 100%
+        progressBar.style.width = '100%';
+        
+        // Mostrar Score
+        finalScoreDisplay.textContent = `${score}/${quizData.length}`;
+        
+        // Mensaje Personalizado
+        if (score === quizData.length) {
+            resultMessage.innerHTML = "¡Eres un maestro de las derivadas! 🏆<br>Puntaje Perfecto.";
+        } else if (score >= 3) {
+            resultMessage.innerHTML = "¡Muy buen trabajo! Tienes bases sólidas. 👍";
+        } else {
+            resultMessage.innerHTML = "Sigue practicando, repasa el <a href='formulario.html' class='text-primary'>Formulario</a> y vuelve a intentarlo. 📚";
+        }
+    }
+
+    btnNext.addEventListener('click', () => {
+        currentQuestionIndex++;
+        if (currentQuestionIndex < quizData.length) {
+            loadQuestion();
+        } else {
+            showResults();
+        }
+    });
+
+    // Iniciar el examen con la primera pregunta
+    loadQuestion();
+});

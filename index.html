@@ -10,9 +10,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <!-- Estilos CSS (lo crearemos en el siguiente paso) -->
     <link rel="stylesheet" href="styles.css"> 
-    <!-- MathJax: Librería para renderizar fórmulas matemáticas -->
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- MathJax: Librería para renderizar fórmulas matemáticas (SVG es más rápido) -->
+
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 </head>
 <body>
     <!-- Barra de Navegación -->
@@ -24,12 +24,19 @@
                 ☰
             </button>
             <ul class="nav-menu" id="navMenu">
-                <li><a href="#introduccion">1. Introducción</a></li>
-                <li><a href="#reglas-basicas">2. Reglas Básicas</a></li>
-                <li><a href="#operaciones">3. Operaciones</a></li>
-                <li><a href="#regla-cadena">4. Cadena</a></li>
-                <li><a href="#trascendentes">5. Trascendentes</a></li>
-                <li><a href="#ejemplos">6. Ejemplos</a></li>
+                <li class="dropdown">
+                    <a href="#inicio" style="cursor: pointer;">📚 Temas ▼</a>
+                    <div class="dropdown-content">
+                        <a href="#introduccion">1. Introducción</a>
+                        <a href="#reglas-basicas">2. Reglas Básicas</a>
+                        <a href="#operaciones">3. Operaciones</a>
+                        <a href="#regla-cadena">4. Cadena</a>
+                        <a href="#trascendentes">5. Trascendentes</a>
+                    </div>
+                </li>
+                <li><a href="trigonometria.html">📐 Trigonometría</a></li>
+                <li><a href="formulario.html" class="text-primary">📝 Formulario</a></li>
+                <li><a href="quiz.html" class="text-primary">🎓 Quiz</a></li>
             </ul>
         </div>
     </nav>
@@ -42,7 +49,6 @@
     </header>
     <!-- Contenido Principal -->
     <main class="container">
-        
         <!-- Sección: Introducción -->
         <section id="introduccion" class="content-section fade-in">
             <h2>1. Introducción a la Derivada</h2>
@@ -66,9 +72,8 @@
         </section>
         <!-- Sección: Reglas Básicas -->
         <section id="reglas-basicas" class="content-section fade-in">
-            <h2>2. Reglas Básicas (Pasa el ratón sobre las tarjetas)</h2>
+            <h2>2. Reglas Básicas</h2>
             <div class="flashcard-grid">
-                
                 <!-- Tarjeta 1 -->
                 <div class="flashcard-container">
                     <div class="flashcard">
@@ -228,17 +233,15 @@
                     <p class="math-step text-muted text-md">(El 5 se multiplica por la derivada de \(\ln(x)\) que es \(1/x\), dando \(5/x\))</p>
                     <p class="math-step result">\( f'(x) = \frac{5}{x} - 3x^2 \)</p>
                 </div>
-                <h3 class="mt-2-5">5.3. Funciones Trigonométricas (Seno y Coseno)</h3>
-                <p class="mt-1">Las derivadas de las funciones trigonométricas son cíclicas. Aparecen frecuentemente en cálculos de ondas, oscilaciones y física.</p>
-                <div class="formula-box">
-                    \[ \frac{d}{dx} [\sin(x)] = \cos(x) \quad \text{y} \quad \frac{d}{dx} [\cos(x)] = -\sin(x) \]
-                </div>
-                <div class="example-section mt-1">
-                    <h4>Ejemplo Resuelto:</h4>
-                    <p class="math-step">Derivar: \( f(x) = x^2 \sin(x) \)</p>
-                    <p class="math-step text-muted text-md">(Aquí debemos usar la Regla del Producto que vimos en la sección 3)</p>
-                    <p class="math-step">\( f'(x) = (2x)(\sin(x)) + (x^2)(\cos(x)) \)</p>
-                    <p class="math-step result">\( f'(x) = 2x\sin(x) + x^2\cos(x) \)</p>
+                <h3 class="mt-2-5">5.3. Funciones Trigonométricas Completas</h3>
+                <p class="mt-1">Las derivadas de las funciones trigonométricas (seno, coseno, tangente, secante, etc.) son un mundo fascinante lleno de simetría y son la clave para entender fenómenos ondulatorios en física y matemáticas.</p>
+                
+                <div class="example-section mt-1 promo-box">
+                    <h4>¿Quieres dominar las 6 derivadas trigonométricas?</h4>
+                    <p class="mt-0-5 text-muted text-md">Hemos creado una sección especial, con ejemplos avanzados, dedicada exclusivamente a este tema cíclico.</p>
+                    <a href="trigonometria.html" class="btn-primary mt-1">
+                        Ir a la Guía de Trigonometría ➡️
+                    </a>
                 </div>
             </div>
         </section>
