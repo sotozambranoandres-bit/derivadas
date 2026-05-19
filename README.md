@@ -1,7 +1,4 @@
-echale un vistazo 
-https://derivadas-uniputumayo.vercel.app/
-
- # derivadas
+# derivadas
 esta es una pagina donde aprenderas a derivar funciones aprendiendo todas las reglas de las derivadas con muchos ejemplos y explicaciones paso a paso.
 # 📘 Reglas de las Derivadas
 
