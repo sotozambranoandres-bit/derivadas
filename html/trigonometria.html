@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="styles.css"> 
+    <link rel="stylesheet" href="../css/styles.css"> 
     
 
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
@@ -19,9 +19,10 @@
     <!-- Barra de Navegación -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="index.html" class="nav-logo">📘 Derivadas</a>
-            <ul class="nav-menu">
-                <li><a href="index.html">⬅️ Volver al Inicio</a></li>
+            <a href="../index.html" class="nav-logo">📘 Derivadas</a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menú">☰</button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="../index.html">⬅️ Volver al Inicio</a></li>
                 <li class="dropdown">
                     <a href="#" style="cursor: pointer;">📚 Temas Trigo ▼</a>
                     <div class="dropdown-content">
@@ -35,7 +36,6 @@
             </ul>
         </div>
     </nav>
-
     <!-- Encabezado Principal -->
     <header id="inicio" class="hero-section">
         <div class="container">
@@ -139,6 +139,6 @@
     </footer>
 
     <!-- Script de Animaciones y Soluciones -->
-    <script src="script.js"></script>
+    <script src="../js/script.js"></script>
 </body>
 </html>

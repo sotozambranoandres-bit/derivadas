@@ -59,7 +59,7 @@ body::before {
     /* Textura matemática sigilosa */
     background-image:
         linear-gradient(rgba(18, 18, 18, 0.5), rgba(18, 18, 18, 0.93)),
-        url("fondo_matematico.png");
+        url("../img/fondo_matematico.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

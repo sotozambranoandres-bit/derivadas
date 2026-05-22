@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="styles.css"> 
+    <link rel="stylesheet" href="../css/styles.css"> 
     
     <!-- MathJax en modo SVG -->
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
@@ -19,9 +19,10 @@
     <!-- Barra de Navegación (Se ocultará al imprimir) -->
     <nav class="navbar print-hide">
         <div class="nav-container">
-            <a href="index.html" class="nav-logo">📘 Derivadas</a>
-            <ul class="nav-menu">
-                <li><a href="index.html">⬅️ Volver al Inicio</a></li>
+            <a href="../index.html" class="nav-logo">📘 Derivadas</a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menú">☰</button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="../index.html">⬅️ Volver al Inicio</a></li>
                 <li><a href="trigonometria.html">📐 Trigonometría</a></li>
                 <li><a href="formulario.html" class="text-primary">📝 Formulario</a></li>
                 <li><a href="quiz.html" class="text-primary">🎓 Quiz</a></li>
@@ -117,6 +118,6 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="../js/script.js"></script>
 </body>
 </html>
