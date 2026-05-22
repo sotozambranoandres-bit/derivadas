@@ -107,8 +107,8 @@ document.addEventListener('DOMContentLoaded', () => {
             feedback: "¡Exacto! La tasa de cambio de un valor constante es siempre 0."
         },
         {
-            question: "¿Cuál es la derivada de \\( f(x) = \\sen(x) \\)?",
-            options: ["\\( \\cos(x) \\)", "\\( -\\cos(x) \\)", "\\( -\\sen(x) \\)", "\\( \\tan(x) \\)"],
+            question: "¿Cuál es la derivada de \\( f(x) = \\sin(x) \\)?",
+            options: ["\\( \\cos(x) \\)", "\\( -\\cos(x) \\)", "\\( -\\sin(x) \\)", "\\( \\tan(x) \\)"],
             correctIndex: 0,
             feedback: "¡Muy bien! Es una de las reglas trigonométricas fundamentales."
         },
