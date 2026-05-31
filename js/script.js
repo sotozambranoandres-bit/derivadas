@@ -123,6 +123,36 @@ document.addEventListener('DOMContentLoaded', () => {
             options: ["\\( x e^{x-1} \\)", "\\( e^x \\)", "\\( \\ln(x) \\)", "\\( 0 \\)"],
             correctIndex: 1,
             feedback: "¡Perfecto! La función exponencial natural es especial porque su derivada es ella misma."
+        },
+        {
+            question: "¿Cuál es la derivada de \\( f(x) = x^2 \\ln(x) \\)?",
+            options: ["\\( 2x \\ln(x) \\)", "\\( x(2\\ln(x) + 1) \\)", "\\( 2x + \\frac{1}{x} \\)", "\\( x^2 \\ln(x) + 2x \\)"],
+            correctIndex: 1,
+            feedback: "¡Correcto! Usamos la regla del producto: \\( (u \\cdot v)' = u'v + uv' \\). Si \\( u = x^2 \\) y \\( v = \\ln(x) \\), entonces \\( f'(x) = 2x \\ln(x) + x^2 \\left(\\frac{1}{x}\\right) = 2x \\ln(x) + x = x(2\\ln(x) + 1) \\)."
+        },
+        {
+            question: "Aplica la regla del cociente: ¿Cuál es la derivada de \\( f(x) = \\frac{x^2 - 1}{x + 2} \\)?",
+            options: ["\\( \\frac{x^2 + 4x - 1}{(x + 2)^2} \\)", "\\( 2x \\)", "\\( \\frac{x^2 + 4x + 1}{(x + 2)^2} \\)", "\\( \\frac{3x^2 + 4x - 1}{(x + 2)^2} \\)"],
+            correctIndex: 2,
+            feedback: "¡Excelente! Aplicando la regla del cociente \\( \\left(\\frac{u}{v}\\right)' = \\frac{u'v - uv'}{v^2} \\): \\( f'(x) = \\frac{2x(x+2) - (x^2-1)(1)}{(x+2)^2} = \\frac{2x^2+4x-x^2+1}{(x+2)^2} = \\frac{x^2+4x+1}{(x+2)^2} \\)."
+        },
+        {
+            question: "Aplica la regla de la cadena: ¿Cuál es la derivada de \\( f(x) = \\cos(x^2) \\)?",
+            options: ["\\( -\\sin(2x) \\)", "\\( 2x \\cos(x^2) \\)", "\\( -\\sin(x^2) \\)", "\\( -2x \\sin(x^2) \\)"],
+            correctIndex: 3,
+            feedback: "¡Muy bien! Usamos la regla de la cadena: la derivada externa de la función coseno es \\( -\\sin(x^2) \\), y la multiplicamos por la derivada del argumento interno \\( x^2 \\), que es \\( 2x \\), resultando en \\( -2x \\sin(x^2) \\)."
+        },
+        {
+            question: "¿Cuál es la derivada de \\( f(x) = \\ln(x^2 + 3) \\)?",
+            options: ["\\( \\frac{1}{x^2 + 3} \\)", "\\( \\frac{2x}{x^2 + 3} \\)", "\\( \\frac{2x}{x} \\)", "\\( 2x \\ln(x^2 + 3) \\)"],
+            correctIndex: 1,
+            feedback: "¡Correcto! Por la regla de la cadena, la derivada de \\( \\ln(g(x)) \\) es \\( \\frac{g'(x)}{g(x)} \\). Aquí, \\( g(x) = x^2 + 3 \\) y \\( g'(x) = 2x \\), por lo que obtenemos \\( \\frac{2x}{x^2 + 3} \\)."
+        },
+        {
+            question: "[Nivel Avanzado] Encuentra la derivada de \\( f(x) = \\ln\\left(\\frac{e^x}{x^2 + 1}\\right) \\).",
+            options: ["\\( \\frac{x^2 - 1}{x^2 + 1} \\)", "\\( \\frac{e^x(x^2 - 2x + 1)}{x^2 + 1} \\)", "\\( 1 - \\frac{1}{x^2 + 1} \\)", "\\( \\frac{(x - 1)^2}{x^2 + 1} \\)"],
+            correctIndex: 3,
+            feedback: "¡Impresionante! Has resuelto la pregunta más difícil del quiz. La mejor forma de abordar esta derivada es simplificar primero usando las propiedades de los logaritmos: \\( f(x) = \\ln\\left(\\frac{e^x}{x^2 + 1}\\right) = \\ln(e^x) - \\ln(x^2 + 1) = x - \\ln(x^2 + 1) \\). Al derivar término a término obtenemos: \\( f'(x) = 1 - \\frac{2x}{x^2 + 1} \\). Al juntar las fracciones con denominador común: \\( f'(x) = \\frac{x^2 + 1 - 2x}{x^2 + 1} = \\frac{(x - 1)^2}{x^2 + 1} \\)."
         }
     ];
 
@@ -215,7 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Mensaje Personalizado
         if (score === quizData.length) {
             resultMessage.innerHTML = "¡Eres un maestro de las derivadas! 🏆<br>Puntaje Perfecto.";
-        } else if (score >= 3) {
+        } else if (score >= 7) {
             resultMessage.innerHTML = "¡Muy buen trabajo! Tienes bases sólidas. 👍";
         } else {
             resultMessage.innerHTML = "Sigue practicando, repasa el <a href='formulario.html' class='text-primary'>Formulario</a> y vuelve a intentarlo. 📚";
